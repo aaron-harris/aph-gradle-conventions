@@ -1,0 +1,36 @@
+## PR Build Workflow
+#
+# Build the project and execute all unit tests and static analysis checks.
+#
+# Runs when any new PR is created for merge into `main`, and then executes again after such a PR is merged, in order to
+# ensure that all checks continue to pass following integration.  Can also be executed manually, for any branch.
+
+name: 'Gradle Build'
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+
+      - name: 'Set Up Java'
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 17
+
+      - name: 'Set Up Gradle'
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: 'Build with Gradle'
+        run: ./gradlew check
