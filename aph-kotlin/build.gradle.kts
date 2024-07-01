@@ -14,6 +14,7 @@ repositories {
 
 dependencies {
     implementation(libs.kotlin.gradlePlugin)
+    implementation(libs.spotless.gradlePlugin)
 }
 
 group = "io.github.aaron-harris.gradle-conventions"

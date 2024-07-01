@@ -19,3 +19,8 @@ plugins {
 ## Plugin `aph-kotlin`
 
 A convention plugin for arbitrary Kotlin (JVM) projects.
+
+Contains the following functionality:
+ - Automatic linting (using [Ktlint](https://pinterest.github.io/ktlint/latest/)), both for the consuming project's 
+   sources and for its `build.gradle.kts` file.  Linting rules can be customized through `.editorconfig` in the usual
+   way.
