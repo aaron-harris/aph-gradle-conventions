@@ -1,10 +1,12 @@
 import com.diffplug.gradle.spotless.BaseKotlinExtension
 import com.diffplug.gradle.spotless.SpotlessExtension
+import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 
 plugins {
     id("kotlin")
 
     id("com.diffplug.spotless")
+    id("io.gitlab.arturbosch.detekt")
 }
 
 configure<SpotlessExtension> {
@@ -19,4 +21,12 @@ configure<SpotlessExtension> {
     kotlinGradle {
         sharedKtlint()
     }
+}
+
+configure<DetektExtension> {
+    source.setFrom(
+        "src/main/kotlin",
+        "src/test/kotlin",
+        "build.gradle.kts",
+    )
 }
