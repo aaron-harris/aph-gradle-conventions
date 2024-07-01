@@ -12,6 +12,10 @@ plugins {
     id("org.jetbrains.kotlinx.kover")
 }
 
+repositories {
+    mavenCentral()
+}
+
 configure<SpotlessExtension> {
     val sharedKtlint: BaseKotlinExtension.() -> Unit = {
         ktlint("1.3.0")

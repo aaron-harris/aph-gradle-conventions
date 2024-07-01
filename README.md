@@ -21,8 +21,8 @@ plugins {
 A convention plugin for arbitrary Kotlin (JVM) projects.
 
 Contains the following functionality:
- - Common configuration for things like unit tests that I expect to be configured in the same way across all my Kotlin
-   projects.
+ - Common configuration for things like repositories and unit tests that I expect to be configured in the same way 
+   across all my Kotlin projects.
  - Automatic linting (using [Ktlint](https://pinterest.github.io/ktlint/latest/)), both for the consuming project's 
    sources and for its `build.gradle.kts` file.  Linting rules can be customized through `.editorconfig` in the usual
    way.
