@@ -5,6 +5,7 @@ plugins {
     `maven-publish`
 
     alias(libs.plugins.spotless)
+    alias(libs.plugins.detekt)
 }
 
 repositories {
@@ -33,4 +34,11 @@ spotless {
     kotlinGradle {
         sharedKtlint()
     }
+}
+
+detekt {
+    source.setFrom(
+        "src/main/kotlin",
+        "build.gradle.kts",
+    )
 }
