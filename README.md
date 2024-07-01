@@ -24,3 +24,6 @@ Contains the following functionality:
  - Automatic linting (using [Ktlint](https://pinterest.github.io/ktlint/latest/)), both for the consuming project's 
    sources and for its `build.gradle.kts` file.  Linting rules can be customized through `.editorconfig` in the usual
    way.
+ - Static analysis using [Detekt](https://detekt.dev/), both for the consuming project's sources and for its
+   `build.gradle.kts` file.  Rules can be customized by providing a Detekt configuration file in the usual way and in
+   the default location (`config/detekt/detekt.yaml`, relative to the project's root directory).
