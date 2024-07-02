@@ -1,0 +1,4 @@
+[*.kt]
+# My GitHub name includes a hyphen, so if I want to use an io.github package name, convention says to use underscore,
+# which this rule forbids.  Disable it in favor of Detekt, which provides a more-flexible version of the same rule.
+ktlint_standard_package-name = disabled
