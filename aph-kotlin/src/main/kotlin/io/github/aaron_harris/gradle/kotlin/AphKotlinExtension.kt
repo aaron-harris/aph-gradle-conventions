@@ -3,6 +3,7 @@ package io.github.aaron_harris.gradle.kotlin
 import org.gradle.api.Action
 import org.gradle.api.plugins.ExtensionAware
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.SetProperty
 import org.gradle.kotlin.dsl.getByType
 
 @DslMarker
@@ -17,6 +18,7 @@ annotation class AphKotlinGradlePluginDsl
  * aphKotlin {
  *     codeCoverage {
  *         minimumRequired = 75
+ *         excludedClasses.add("foo.BarKt")
  *     }
  * }
  * ```
@@ -42,6 +44,14 @@ interface AphKotlinExtension : ExtensionAware {
          * Defaults to [Defaults.MINIMUM_REQUIRED].
          */
         val minimumRequired: Property<Int>
+
+        /**
+         * Classes that should be excluded from the code coverage requirement.
+         *
+         * Values may include glob wildcards; see [kotlinx.kover.gradle.plugin.dsl.KoverReportFilter.classes] for more
+         * details.
+         */
+        val excludedClasses: SetProperty<String>
 
         object Defaults {
             const val MINIMUM_REQUIRED = 80

@@ -66,6 +66,8 @@ configure<KoverProjectExtension> {
             minBound(aphKotlin.codeCoverage.minimumRequired)
         }
 
+        filters.excludes.classes = aphKotlin.codeCoverage.excludedClasses
+
         total {
             log.onCheck = true
             html.onCheck = true

@@ -39,6 +39,9 @@ Example configuration:
 
 ```kotlin
 aphKotlin {
-    codeCoverage.minimumRequired = 75
+    codeCoverage { 
+        minimumRequired = 75
+        excludedClasses.add("foo.BarKt")
+    }
 }
 ```
