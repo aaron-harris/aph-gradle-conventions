@@ -16,6 +16,8 @@ plugins {
 }
 ```
 
+All plugins are published to the GitHub Packages repository associated with this project.
+
 ## Plugin `aph-kotlin`
 
 A convention plugin for arbitrary Kotlin (JVM) projects.

@@ -19,11 +19,6 @@ dependencies {
     implementation(libs.kover.gradlePlugin)
 }
 
-group = "io.github.aaron-harris.gradle-conventions"
-
-// Used for local development only; published versions should be overridden in CI/CD
-version = "local-SNAPSHOT"
-
 spotless {
     val sharedKtlint: BaseKotlinExtension.() -> Unit = {
         ktlint(libs.versions.ktlint.get())
@@ -44,4 +39,23 @@ detekt {
         "src/main/kotlin",
         "build.gradle.kts",
     )
+}
+
+publishing {
+    val gitHubRepoUrl: String? by project
+    gitHubRepoUrl?.let { repoUrl ->
+        val gitHubUser: String by project
+        val gitHubToken: String by project
+
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri(repoUrl)
+                credentials {
+                    username = gitHubUser
+                    password = gitHubToken
+                }
+            }
+        }
+    }
 }
