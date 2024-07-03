@@ -27,11 +27,11 @@ jobs:
       - name: 'Set Up Gradle'
         uses: gradle/actions/setup-gradle@v3
 
-      - name: 'Build with Gradle'
+      - name: 'Build and Publish'
         run: >-
           ./gradlew
-          -Pversion={{ github.ref }}
-          -PgitHubRepoUrl="https://maven.pkg.github.com/{{ github.repository }}"
-          -PgitHubUser={{ github.actor }}
-          -PgitHubToken={{ github.token }}
+          -Pversion=${{ github.ref }}
+          -PgitHubRepoUrl="https://maven.pkg.github.com/${{ github.repository }}"
+          -PgitHubUser=${{ github.actor }}
+          -PgitHubToken=${{ github.token }}
           check publish
