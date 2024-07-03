@@ -28,10 +28,15 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
 
       - name: 'Build and Publish'
+        env:
+          VERSION: ${{ github.ref }}
+          GITHUB_REPO_URL: "https://maven.pkg.github.com/${{ github.repository }}"
+          GITHUB_USER: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: >-
           ./gradlew
-          -Pversion=${{ github.ref }}
-          -PgitHubRepoUrl="https://maven.pkg.github.com/${{ github.repository }}"
-          -PgitHubUser=${{ github.actor }}
-          -PgitHubToken=${{ github.token }}
+          -Pversion="$VERSION"
+          -PgitHubRepoUrl="$GITHUB_REPO_URL"
+          -PgitHubUser="$GITHUB_USER"
+          -PgitHubToken="$GITHUB_TOKEN"
           check publish
