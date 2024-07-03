@@ -1,0 +1,37 @@
+## Publishing Workflow
+#
+# Build the project and push the resulting artifacts to GitHub Packages.
+#
+# Runs whenever a new GitHub Release is created.  The version of the published artifact will be the same as that of the
+# triggering GitHub Release.
+
+name: 'Publish to GitHub Packages'
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+
+      - name: 'Set Up Java'
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 17
+
+      - name: 'Set Up Gradle'
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: 'Build with Gradle'
+        run: >-
+          ./gradlew
+          -Pversion={{ github.ref }}
+          -PgitHubRepoUrl="https://maven.pkg.github.com/{{ github.repository }}"
+          -PgitHubUser={{ github.actor }}
+          -PgitHubToken={{ github.token }}
+          check publish
